@@ -3,99 +3,192 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Klondike – Aplikace</title>
-
+  <title>Rozcestnik aplikaci</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #1e293b;
-      --accent: #f59e0b;
-      --text: #f1f5f9;
-      --hover: #334155;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #142033;
+      --muted: #64748b;
+      --line: #d9e2ef;
+      --klondike: #b45309;
+      --work: #2563eb;
+      --shadow: 0 18px 48px rgba(20, 32, 51, 0.10);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      background: var(--bg);
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(180, 83, 9, 0.10), transparent 34%),
+        linear-gradient(225deg, rgba(37, 99, 235, 0.10), transparent 38%),
+        var(--bg);
       min-height: 100vh;
-      text-align: center;
     }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-      padding: 2rem;
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0 36px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
     }
 
     h1 {
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      letter-spacing: 1px;
+      margin: 0;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: 0;
     }
 
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      transition: 0.2s ease;
+    .lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .app-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .app-link {
+      display: grid;
+      gap: 6px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: inherit;
       text-decoration: none;
-      color: var(--text);
-      display: block;
-      border: 2px solid transparent;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
     }
 
-    .card:hover {
-      background: var(--hover);
-      border-color: var(--accent);
-      transform: translateY(-4px);
+    .app-link:hover,
+    .app-link:focus-visible {
+      transform: translateY(-2px);
+      border-color: currentColor;
+      box-shadow: 0 12px 28px rgba(20, 32, 51, 0.12);
+      outline: none;
     }
 
-    .card h2 {
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
+    .app-link strong {
+      font-size: 16px;
     }
 
-    .card p {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .app-link span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .klondike h2,
+    .klondike .app-link { color: var(--klondike); }
+
+    .work h2,
+    .work .app-link { color: var(--work); }
+
+    .work-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      opacity: 0.6;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 780px) {
+      main { width: min(100% - 24px, 1120px); padding-top: 28px; }
+      header { display: grid; align-items: start; }
+      .sections { grid-template-columns: 1fr; }
+      .tag { width: fit-content; }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Klondike 2026 – Aplikace</h1>
+  <main>
+    <header>
+      <div>
+        <h1>Aplikace</h1>
+        <p class="lead">Rozcestnik pro taborove nastroje Klondike a pracovni vypoctove aplikace.</p>
+      </div>
+      <div class="tag">GitHub Pages</div>
+    </header>
 
-    <a class="card" href="https://pfait33.github.io/cth/">
-      <h2>🏁 Bodování CTH</h2>
-      <p>Celotáborová hra – závodní systém Formule 1</p>
-    </a>
+    <div class="sections">
+      <section class="klondike" aria-labelledby="klondike-title">
+        <h2 id="klondike-title">Aplikace pro tabor Klondike</h2>
+        <div class="app-list">
+          <a class="app-link" href="https://pfait33.github.io/cth/">
+            <strong>Bodovani CTH</strong>
+            <span>Celotaborova hra Klondike, zavodni system Formule 1.</span>
+          </a>
+          <a class="app-link" href="https://pfait33.github.io/banka/">
+            <strong>Bankovni aplikace</strong>
+            <span>Sprava herni ekonomiky, uctu deti a meny Frfy.</span>
+          </a>
+        </div>
+      </section>
 
-    <a class="card" href="https://pfait33.github.io/banka/">
-      <h2>🏦 Bankovní aplikace</h2>
-      <p>Ekonomika hry Kasino – měna Frfy</p>
-    </a>
+      <section class="work" aria-labelledby="work-title">
+        <h2 id="work-title">Aplikace pro praci</h2>
+        <div class="app-list">
+          <a class="app-link" href="https://pfait33.github.io/zatizeni-od-snehu/">
+            <strong>Zatizeni od snehu</strong>
+            <span>Vypoctova aplikace pro stanoveni zatizeni konstrukce snehovou pokryvkou.</span>
+          </a>
+        </div>
+        <p class="work-note">Pokud je pracovni aplikace publikovana pod jinym slugem, staci upravit odkaz v teto karte.</p>
+      </section>
+    </div>
 
-    <footer>
-      © 2026 Klondike
-    </footer>
-  </div>
+    <footer>© 2026</footer>
+  </main>
 </body>
 </html>
